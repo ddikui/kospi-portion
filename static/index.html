@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>코스피 시가총액 비중</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="top">
+        <div>
+          <p class="eyebrow">KOSPI market cap weight</p>
+          <h1>코스피 시가총액 비중</h1>
+        </div>
+        <div class="top-actions">
+          <p id="status-line" class="status-line">시세를 불러오는 중</p>
+          <button id="refresh" type="button">다시 받기</button>
+        </div>
+      </header>
+
+      <section id="hero" class="hero" aria-live="polite">
+        <p class="hero-kicker">가장 큰 종목</p>
+        <p id="hero-line" class="hero-line">비중을 계산하고 있습니다.</p>
+      </section>
+
+      <section class="stats" id="stats"></section>
+
+      <section class="board">
+        <div class="panel chart-panel">
+          <div class="panel-head">
+            <h2>상위 비중</h2>
+            <p id="chart-caption">시가총액이 큰 순서입니다.</p>
+          </div>
+          <div id="chart" class="chart"></div>
+        </div>
+        <div class="panel concentration-panel">
+          <div class="panel-head">
+            <h2>쏠림</h2>
+            <p>위에서부터 더한 누적 비중</p>
+          </div>
+          <div id="concentration" class="concentration"></div>
+          <p id="note" class="note"></p>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="toolbar">
+          <label class="search">
+            <span>검색</span>
+            <input id="query" type="search" placeholder="종목명 또는 코드" autocomplete="off" />
+          </label>
+          <div class="filters" role="group" aria-label="주식 종류">
+            <button type="button" class="chip is-on" data-kind="all">전체</button>
+            <button type="button" class="chip" data-kind="common">보통주</button>
+            <button type="button" class="chip" data-kind="preferred">우선주</button>
+          </div>
+          <label class="sort">
+            <span>정렬</span>
+            <select id="sort">
+              <option value="weight">비중</option>
+              <option value="marketCap">시가총액</option>
+              <option value="changeRate">등락률</option>
+              <option value="price">현재가</option>
+              <option value="name">이름</option>
+            </select>
+          </label>
+          <p id="result-count" class="result-count"></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>종목</th>
+                <th class="num">현재가</th>
+                <th class="num">등락률</th>
+                <th class="num">시가총액</th>
+                <th class="num">비중</th>
+                <th>누적</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/market/refresh",
+      "destination": "/api/market?force=true"
+    },
+    {
+      "source": "/api/market",
+      "destination": "/api/market"
+    }
+  ]
+}
